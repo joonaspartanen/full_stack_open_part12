@@ -1,0 +1,16 @@
+### Get todos
+GET http://localhost:3000/todos
+
+### Get todo by id
+@id = 616da5ca1f6ec8d4c7134795
+GET http://localhost:3000/todos/{{id}}
+
+### Update todo by id
+@id = 616da5ca1f6ec8d4c7134796
+PUT http://localhost:3000/todos/{{id}}
+Content-Type: application/json
+
+{
+    "text": "Write really good code",
+    "done": true
+}
