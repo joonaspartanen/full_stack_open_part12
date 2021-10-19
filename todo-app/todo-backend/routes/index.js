@@ -1,8 +1,8 @@
 const express = require('express');
-const redis = require('../redis')
+const { getAsync } = require('../redis');
 const router = express.Router();
 
-const configs = require('../util/config')
+const configs = require('../util/config');
 
 let visits = 0
 
@@ -14,6 +14,13 @@ router.get('/', async (req, res) => {
     ...configs,
     visits
   });
+});
+
+/* GET statistics. */
+router.get('/statistics', async (_, res) => {
+  const currentCount = await getAsync(configs.REDIS_COUNTER_KEY) ?? 0
+  const json = { addedTodos: parseInt(currentCount) }
+  res.json(json);
 });
 
 module.exports = router;

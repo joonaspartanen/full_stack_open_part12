@@ -1,5 +1,7 @@
 const express = require('express');
-const { Todo } = require('../mongo')
+const { Todo } = require('../mongo');
+const { getAsync, setAsync } = require('../redis');
+const { REDIS_COUNTER_KEY } = require('../util/config')
 const router = express.Router();
 
 /* GET todos listing. */
@@ -14,8 +16,19 @@ router.post('/', async (req, res) => {
     text: req.body.text,
     done: false
   })
+
+  incrementTodoCounter();
+
   res.send(todo);
 });
+
+const incrementTodoCounter = async () => {
+  const currentCount = await getAsync(REDIS_COUNTER_KEY)
+
+  const nextCount = currentCount ? parseInt(currentCount) + 1 : 1
+
+  await setAsync(REDIS_COUNTER_KEY, nextCount)
+}
 
 const singleRouter = express.Router();
 

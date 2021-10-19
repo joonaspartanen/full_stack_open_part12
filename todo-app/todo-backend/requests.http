@@ -14,3 +14,12 @@ Content-Type: application/json
     "text": "Write really good code",
     "done": true
 }
+
+### Add todo
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "text": "Redis testing...",
+    "done": false
+}
