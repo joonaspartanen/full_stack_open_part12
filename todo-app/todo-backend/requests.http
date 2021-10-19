@@ -1,6 +1,9 @@
 ### Get todos
 GET http://localhost:3000/todos
 
+### Get statistics
+GET http://localhost:3000/statistics
+
 ### Get todo by id
 @id = 616da5ca1f6ec8d4c7134795
 GET http://localhost:3000/todos/{{id}}
