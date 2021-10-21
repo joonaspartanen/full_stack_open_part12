@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 /* GET statistics. */
 router.get('/statistics', async (_, res) => {
   const currentCount = await getAsync(configs.REDIS_COUNTER_KEY) ?? 0
-  const json = { addedTodos: parseInt(currentCount) }
+  const json = { addedTodos: parseInt(currentCount), test: "Hello!!!" }
   res.json(json);
 });
 
