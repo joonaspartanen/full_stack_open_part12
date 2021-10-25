@@ -1,0 +1,69 @@
+@import 'src/styles/variables';
+
+nav.ui.stackable.navbar.menu {
+  margin: 0;
+  background-color: $grey-lighter;
+  margin-bottom: 0px;
+  max-height: 65px;
+  transition: background-color 0.3s, color 0.3s;
+
+  > .item {
+    color: $grey-darker;
+
+    &::before {
+      background: $grey-light;
+    }
+  }
+
+  &.dark-mode {
+    background-color: $grey-darker;
+
+    > .item {
+      color: $grey-lighter;
+
+      &::before {
+        background: $grey-mid;
+      }
+    }
+
+    & .ui.selection.dropdown,
+    .ui.active.selection.dropdown,
+    .ui.selection.dropdown > .text {
+      background: $grey-dark;
+      color: white;
+      border-color: $grey-mid !important;
+
+      & > .menu {
+        border-color: $grey-mid !important;
+
+        & > .item {
+          background: $grey-dark !important;
+
+          &:hover,
+          &.active.selected {
+            background: $grey-darker !important;
+          }
+
+          & > .text {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.color-mode-toggle {
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+
+  & .ui.toggle.checkbox label:before {
+    background-color: $grey-light !important;
+  }
+
+  & .ui.toggle.checkbox input:checked ~ label:before {
+    background-color: $finnish-blue !important;
+  }
+}

@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+
+.footer.ui.secondary.menu {
+  background-color: $grey-lighter;
+  margin-top: 0px;
+
+  &.dark-mode {
+    background-color: $grey-darker;
+  }
+}

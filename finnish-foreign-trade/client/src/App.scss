@@ -1,0 +1,102 @@
+@import 'src/styles/variables';
+
+body {
+  margin: 0;
+  padding-top: 0px;
+}
+
+.main-container {
+  background-color: $grey-lighter;
+  padding-left: 0;
+  padding-right: 0;
+  transition: background-color 0.3s, color 0.3s;
+
+  h2, h3 {
+    color: $finnish-blue;
+  }
+
+  &.dark-mode {
+    background-color: $grey-dark;
+
+    h2, h3 {
+      color: white;
+    }
+  }
+}
+
+.anchor-link {
+  position: absolute;
+  bottom: 2em;
+}
+
+.arrow-down {
+  box-sizing: border-box;
+  height: 2em;
+  width: 2em;
+  border-style: solid;
+  border-color: white;
+  border-width: 0px 3px 3px 0px;
+  transform: rotate(45deg);
+  transition: border-width 150ms ease-in-out;
+
+  &:hover {
+    border-bottom-width: 5px;
+    border-right-width: 5px;
+  }
+}
+
+.chart-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 0 3em 0;
+  min-height: 100vh;
+
+  &:first-of-type {
+    padding: 0;
+    height: calc(100vh - 65px);
+    min-height: calc(100vh - 65px);
+  }
+
+  &:nth-child(odd) {
+    background-color: white;
+  }
+
+  &:nth-child(even) {
+    background-color: $grey-lighter;
+  }
+
+  &.dark-mode {
+    &:nth-child(odd) {
+      background-color: $grey-dark;
+    }
+
+    &:nth-child(even) {
+      background-color: $grey-darker;
+    }
+  }
+}
+
+.ui.buttons > button.ui.active.toggle.button {
+  background-color: $finnish-blue !important;
+}
+
+.ui.container {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.tooltip {
+  padding: 0.5em;
+}
+
+.footer.ui.secondary.menu {
+  background-color: $grey-light;
+  margin-top: 0px;
+
+  &.dark-mode {
+    background-color: $grey-darker;
+  }
+}

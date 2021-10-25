@@ -1,0 +1,57 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  ci-cd-pipeline:
+    name: CI/CD pipeline
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Backend / npm install
+        run: |
+          npm ci
+      - name: Backend / run tests
+        run: npm test
+        env:
+          CI: true
+      - name: Frontend / npm install
+        working-directory: ./client
+        run: |
+          npm ci
+      - name: Frontend / build
+        working-directory: ./client
+        run: |
+          npm run build --prod
+      - name: Frontend / run tests
+        working-directory: ./client
+        run: npm test
+        env:
+          CI: true
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "finnish-foreign-trade"
+          heroku_email: ${{secrets.HEROKU_USERNAME}}
+          branch: master
+          healthcheck: "https://finnish-foreign-trade.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.26.0
+        if: ${{ github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, '#tag') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
+

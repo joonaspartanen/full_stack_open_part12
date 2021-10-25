@@ -1,0 +1,54 @@
+@import 'src/styles/variables';
+
+.bar-chart {
+  .grid line {
+    stroke: $grey-light;
+    stroke-opacity: 0.6;
+    shape-rendering: crispEdges;
+  }
+
+  .grid path {
+    stroke-width: 0;
+    shape-rendering: crispEdges;
+  }
+
+  .tick > text {
+    font-size: 1.5em;
+    shape-rendering: crispEdges;
+  }
+
+  g > text {
+    shape-rendering: crispEdges;
+  }
+
+  .legend-wrapper {
+    position: absolute;
+    bottom: 20px;
+    left: 60px;
+  }
+
+  .d3-legend-text {
+    font-weight: bold;
+  }
+
+  &.dark-mode {
+    .grid line {
+      stroke: $grey-light;
+    }
+
+    g > text {
+      fill: #fff;
+    }
+  }
+}
+
+.d3-tooltip {
+  position: absolute;
+  display: none;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+}
