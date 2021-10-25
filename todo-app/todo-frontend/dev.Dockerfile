@@ -6,10 +6,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN pwd
-
-RUN ls
-
 RUN npm install
 
 CMD ["npm", "start"]
