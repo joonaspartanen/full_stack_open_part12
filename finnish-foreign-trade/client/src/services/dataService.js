@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../util/apiClient'
 
 const getImports = async year => {
   const response = await axios.get(`/imports/${year}`)
