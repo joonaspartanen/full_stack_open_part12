@@ -21,3 +21,5 @@ yarn-error.log*
 
 # VS Code settings
 settings.json
+
+build
